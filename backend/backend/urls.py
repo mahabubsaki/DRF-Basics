@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework.authtoken.views import obtain_auth_token
+from api_auth.views import RegistrationView,LogOutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('app.urls')),
     path('api-auth/',include('api_auth.urls')),
-    path('api-auth-login/',include('rest_framework.urls'))
-    
+    #for a built in login in testing
+    path('api-auth-login/',include('rest_framework.urls')),
+     path('login/',obtain_auth_token,name='login'),
+     path('register/',RegistrationView.as_view(),name='register'),
+     path('logout/',LogOutView.as_view(),name='logout'),
+     path('query/',include('django_query.urls'))
 ]

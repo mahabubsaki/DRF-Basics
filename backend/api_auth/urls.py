@@ -4,8 +4,8 @@ from api_auth.views import ProductReviewViewSet,ProductViewSet
 
 router = routers.DefaultRouter()
 
-router.register('products',ProductViewSet)
-router.register('reviews',ProductReviewViewSet)
+router.register('products',ProductViewSet,basename='product')
+router.register('reviews',ProductReviewViewSet,basename='product-review')
 
 
 urlpatterns = [
